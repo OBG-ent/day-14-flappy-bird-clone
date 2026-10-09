@@ -1,0 +1,97 @@
+/* ---- Day 14 (featured) · Flappy Bird Clone ---- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 28px 16px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #f5f5f5;
+  background: radial-gradient(circle at 50% 20%, #1b2a4a 0%, #0a0d18 70%);
+}
+
+.wrap {
+  position: relative;            /* overlay positions itself over the canvas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 460px;
+  width: 100%;
+}
+
+h1 { font-size: 1.7rem; letter-spacing: 1px; }
+.hint { opacity: 0.7; font-size: 0.9rem; text-align: center; }
+kbd {
+  background: #2a2a4a;
+  border: 1px solid #4a4a6a;
+  border-radius: 6px;
+  padding: 1px 8px;
+  font-size: 0.85em;
+}
+
+canvas {
+  width: 100%;                   /* scale the 420×560 canvas to fit the column */
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  border: 2px solid #2c2c4e;
+  touch-action: none;            /* let taps control the bird, not the browser */
+  cursor: pointer;
+}
+
+.hud {
+  display: flex;
+  gap: 28px;
+  font-size: 1rem;
+}
+.hud strong { color: #ffd76a; font-size: 1.3rem; margin-left: 6px; }
+
+/* Overlay screens sit centered on top of the canvas */
+#overlay {
+  position: absolute;
+  inset: 0;
+  top: 118px;                    /* below the heading/hint so it covers the canvas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;          /* clicks pass through except on the card */
+}
+.screen {
+  pointer-events: auto;
+  background: rgba(8, 10, 20, 0.88);
+  border: 1px solid #3a3a5e;
+  border-radius: 18px;
+  padding: 28px 36px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+.screen h2 { font-size: 1.5rem; }
+.screen p { opacity: 0.85; }
+
+button {
+  margin-top: 6px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #0e0e1c;
+  background: linear-gradient(135deg, #ffd76a, #f5a623);
+  box-shadow: 0 6px 18px rgba(245, 166, 35, 0.35);
+}
+button:hover { filter: brightness(1.08); }
+
+.hidden { display: none !important; }
+#new-best { color: #ffd76a; font-weight: 700; }
+
+@media (max-width: 480px) {
+  #overlay { top: 104px; }
+  .screen { padding: 22px 26px; }
+}
